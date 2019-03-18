@@ -57,8 +57,8 @@ public class Accumulator {
                Stumbling block 0:
              */
 
-            /*
-                if (list.get(el) instanceof String) {
+            
+            /*  if (list.get(el) instanceof String) {
                     if (list.get(el).startsWith(prefix)) {
                         result += list.get(el);
                     }
@@ -88,7 +88,7 @@ public class Accumulator {
                because the JVM objects to the following code that
                adds use of the operator to the code from Stumbling
                block 0:
-
+			
             if ( ((String)list.get(el)).startsWith(prefix) )
                 result += list.get(el);
 
@@ -121,6 +121,15 @@ public class Accumulator {
       from the \list whose value is "finite".
      */
     public static List_inArraySlots finites(List_inArraySlots list) {
+		List_inArraySlots numbers = new List_inArraySlots();
 
+        for (int el = 0; el < list.size(); el++) {
+            // If el is a double, check if it is infinite.
+            // If it isn't, then add it to numbers
+            if (list.get(el) instanceof Double
+            && !( (Double)list.get(el) ).isInfinite() )
+                numbers.add( list.get(el) );
+            } 
+        return numbers;
     }
 }
